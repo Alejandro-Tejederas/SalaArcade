@@ -55,6 +55,19 @@ public class Jugador {
         this.partidasJugadas = partidasJugadas;
     }
 
-    public void
+    public String toString() {
+        return "Nombre: " +this.nombre +
+                "\nCreditos: " +this.creditos +
+                "\nID: " +this.id +
+                "\nPartidasJugadas: " +this.partidasJugadas;
+    }
+
+    private boolean validaId(String id) {
+        boolean valido = false;
+        if(id.length() == 20) {
+            valido = true;
+        }
+        return valido;
+    }
 }
 
