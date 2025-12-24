@@ -1,18 +1,13 @@
 package model;
 
 public class Jugador {
-    private static int contadorIds = 1;
 
     private String nombre;
-    private final int id;
+    private int id;
     private int creditos;
     private int partidasJugadas;
 
     public Jugador() {
-        this.nombre = "Nombre jugador";
-        this.id = contadorIds++;
-        this.creditos = creditos;
-        this.partidasJugadas = 0;
 
     }
 
@@ -37,7 +32,7 @@ public class Jugador {
     }
 
     public void setId(int id) {
-
+        this.id = id;
     }
     public int getCreditos() {
         return creditos;
@@ -62,12 +57,27 @@ public class Jugador {
                 "\nPartidasJugadas: " +this.partidasJugadas;
     }
 
-    private boolean validaId(String id) {
-        boolean valido = false;
-        if(id.length() == 20) {
-            valido = true;
+    public void recargarCreditos(){
+        this.creditos++;
+    }
+
+    public void gastarCreditos(){
+        if(this.creditos<=0){
+            //no se pueden gastar, no hay
+        }else{
+            this.creditos--;
         }
-        return valido;
+    }
+
+    public void incrementarPartidas(){
+        this.partidasJugadas++;
+    }
+
+    public String mosrarInfo() {
+        return "Nombre: " +this.nombre +
+                "\nCreditos: " +this.creditos +
+                "\nID: " +this.id +
+                "\nPartidasJugadas: " +this.partidasJugadas;
     }
 }
 
