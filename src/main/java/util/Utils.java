@@ -18,7 +18,7 @@ public class Utils {
 
     public boolean comprobarRango(int valor, int min, int max){
         if(valor<min && valor>max){
-            return rue;
+            return true;
         }else{
             return false;
         }

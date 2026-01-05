@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 
 public class Principal {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         Utils utils = new Utils();
         utils.comprobarRango(5,8,10);
@@ -120,5 +120,5 @@ public class Principal {
             }
         }
 
-    }
-}
+
+

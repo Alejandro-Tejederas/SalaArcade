@@ -73,7 +73,7 @@ public class Jugador {
         this.partidasJugadas++;
     }
 
-    public String mosrarInfo() {
+    public String mostrarInfo() {
         return "Nombre: " +this.nombre +
                 "\nCreditos: " +this.creditos +
                 "\nID: " +this.id +

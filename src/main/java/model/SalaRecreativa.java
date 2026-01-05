@@ -40,20 +40,21 @@ public class SalaRecreativa {
     }
 
     public void registrarJugador() throws Exception {
-        //inroduce el nombre
-        Sring nombre= ""
-                in id = j//inroduce el diid
-        in credios= //inroduce los credios
-        Jugador j = new Jugador("Alejanrod", 1, 100, 0);
+        //introduce el nombre
+        String nombre= "";
+        int j;
+        int id = j;//introduce el id
+        int creditos= //introduce los creditos
+        Jugador j = new Jugador("Alejandro", 1, 100, 0);
     }
 
-    public void BuscarJugadorID(in id){
-        //inrodcuce un id
-        if(id== )
+    public void BuscarJugadorID(int id){
+        //introduce un id
+        if(id== );
     }
 
-    publi c void lisarJugadores(){
-        Jjug
+    public void listarJugadores(){
+
                 jugadores.toString();
     }
 }
