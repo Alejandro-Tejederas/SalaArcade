@@ -1,39 +1,44 @@
 package model;
 
 import util.Utils;
-
 import java.util.Arrays;
-import java.util.Random;
+
 
 public class MaquinaArcade {
-    Utils utils = new Utils();
+
     private String nombre;
     private String genero;
-    private int precioPorPartida;
-    private boolean activa;
-    private int contadorPartidas;
+    private int precioPorPartida; // Cuántos créditos cuesta jugar una vez
+    private boolean activa; // true = funciona, false = estropeada/mantenimiento
+    private int contadorPartidas; // Cuenta cuántas veces se ha jugado desde el último arreglo
 
-    private int[] rankingPuntuaciones;      //Array de tamaño 3
-    private String[] rankingJugadores;      //Array de tamaño 3
+    private int[] rankingPuntuaciones;    //Array de tamaño 3 para guardar los puntos por ej, (2000, 600, 100)
+    private String[] rankingJugadores;    //Array de tamaño 3 para guardar los nombres por ej, (Ana, Luis, Pepe)
 
-    public MaquinaArcade() {
+    public MaquinaArcade() {    //Constructor vacio
+        this.rankingPuntuaciones = new int[3];
+        this.rankingJugadores = new String[3];
+        this.activa = true; // Cuano la creamos suponemos que funciona
 
     }
 
-    public MaquinaArcade(String nombre, String genero, int precioPorPartida, boolean activa, int contadorPartidas, int[] rankingPuntuaciones, String[] rankingJugadores) {
+    //Constructor con parametros (para crear la maquina con los datos)
+    public MaquinaArcade(String nombre, String genero, int precioPorPartida){
         this.nombre = nombre;
         this.genero = genero;
         this.precioPorPartida = precioPorPartida;
-        this.activa = activa;
-        this.contadorPartidas = contadorPartidas;
-        this.rankingPuntuaciones = rankingPuntuaciones;
-        this.rankingJugadores = rankingJugadores;
+        this.activa = true; // cuando la creamos esta activa
+        this.contadorPartidas = 0; // cuando la creamos tiene tambien 0 partiddas
+
+        // aquí empezamos los huecos para el ranking
+        this.rankingPuntuaciones = new int[3];
+        this.rankingJugadores = new  String[3];
     }
 
+    // GETTERS Y SETTERS (Para leer y escribir datos privados)
     public String getNombre() {
         return nombre;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -54,7 +59,7 @@ public class MaquinaArcade {
         this.precioPorPartida = precioPorPartida;
     }
 
-    public boolean isActiva() {
+    public boolean isActiva() { // Ponemos "is" porque el getter de los booleans es asi
         return activa;
     }
 
@@ -70,73 +75,57 @@ public class MaquinaArcade {
         this.contadorPartidas = contadorPartidas;
     }
 
+    // Necesitamos estos getters que hay a continuacion para ver el ranking desde fuera (opción 11 del menú)
     public int[] getRankingPuntuaciones() {
         return rankingPuntuaciones;
-    }
-
-    public void setRankingPuntuaciones(int[] rankingPuntuaciones) {
-        this.rankingPuntuaciones = rankingPuntuaciones;
     }
 
     public String[] getRankingJugadores() {
         return rankingJugadores;
     }
 
-    public void setRankingJugadores(String[] rankingJugadores) {
-        this.rankingJugadores = rankingJugadores;
-    }
-
-    /**
-     * Activar maquina
-     */
+    // ACTIVAR LA MAQUINA
     public void activar() {
-            this.activa = true;
+            this.activa = true; // Reactiva la máquina después de un mantenimiento
     }
 
     public void desactivar(){
-            this.activa = false;
-    }
-
-    public boolean estaActiva() {
-            return activa;
+            this.activa = false; // Pone la máquina en mantenimiento
     }
 
 
         public int jugarPartida(String nombreJugador){
-            int puntuacion= utils.generarNumeroAleaori();
+            // Primero calculamos los puntos que ha sacado el jugador (usando la clase Utils)
+            int puntuacion = Utils.generarNumeroAleatorio(0, 9999); // Genera un número entre 0 y 9999
 
-            //Incrementar contador de partidas
-            this.contadorPartidas++;
+            this.contadorPartidas++; //Incrementar contador de partidas
 
-            //Si el contador es múltiplo de 100
-            if(contadorPartidas % 100 == 0){
+            if(contadorPartidas % 100 == 0){ //Si el contador es múltiplo de 100 se estropea
                 desactivar();
             }
 
-            actualizarRanking(nombreJugador, puntuacion);
+            actualizarRanking(nombreJugador, puntuacion); // Comprobamos si ha entrado en el Top 3
 
             return puntuacion;
-
         }
 
 
         //Actualizar el raking top 3
-
         private void actualizarRanking(String nombreJugador, int puntuacion){
-
-            for(int i = 0; i < 3; i++){
-                if(puntuacion == rankingPuntuaciones[i]){
-                    for(int j=2; j>i; j--) {
-                        rankingPuntuaciones[j] = rankingPuntuaciones[j-1];
-                        rankingJugadores[j] = rankingJugadores[j-1];
+            for(int i = 0; i < 3; i++){ // Sirve para ver el top 3
+                if (puntuacion > rankingPuntuaciones[i]) {
+                    for (int j = 2; j > i; j--) {
+                        rankingPuntuaciones[j] = rankingPuntuaciones[j - 1]; // Copia puntos
+                        rankingJugadores[j] = rankingJugadores[j - 1];       // Copia nombre
                     }
                 }
                 rankingPuntuaciones[i] = puntuacion;
                 rankingJugadores[i] = nombreJugador;
-                break;
+                break; //para parar el proceso
         }
     }
 
+    // el to string sirve para imprimir la máquina por consola)
     @Override
     public String toString() {
         return "MaquinaArcade{" +
