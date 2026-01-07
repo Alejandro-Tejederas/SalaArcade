@@ -15,14 +15,14 @@ public class MaquinaArcade {
     private int[] rankingPuntuaciones;    //Array de tamaño 3 para guardar los puntos por ej, (2000, 600, 100)
     private String[] rankingJugadores;    //Array de tamaño 3 para guardar los nombres por ej, (Ana, Luis, Pepe)
 
-    public MaquinaArcade() {    //Constructor vacio
+    public MaquinaArcade() {    //Constructor vacío
         this.rankingPuntuaciones = new int[3];
         this.rankingJugadores = new String[3];
         this.activa = true; // Cuano la creamos suponemos que funciona
 
     }
 
-    //Constructor con parametros (para crear la maquina con los datos)
+    //Constructor con parametros (para crear la máquina con los datos)
     public MaquinaArcade(String nombre, String genero, int precioPorPartida){
         this.nombre = nombre;
         this.genero = genero;

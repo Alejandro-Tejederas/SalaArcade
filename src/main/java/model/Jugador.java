@@ -22,7 +22,7 @@ public class Jugador {
         this.partidasJugadas = partidasJugadas; // Asigna las partidas iniciales
 
     }
-    // GETTERS Y SETTERS (Sirve para leer y modificar los atributos privados)
+    // GETTERS Y SETTERS (Getter= sirve para ver que hay dentro, setter= cambia el valor de la variable)
     public String getNombre() {
         return nombre;
     }
@@ -51,10 +51,10 @@ public class Jugador {
     }
 
     public void setPartidasJugadas(int partidasJugadas) {
-        this.partidasJugadas = partidasJugadas; // Cambia el contador manualmente
+        this.partidasJugadas = partidasJugadas;
     }
 
-    // MÉTODOS DE FUNCIONALIDAD (Lo que el jugador puede hacer)
+    // Metodos de funciones (Lo que el jugador puede hacer)
     public void recargarCreditos(int cantidad){
         if(cantidad>0){ //Esto indica que solo recarga si la cantidad es positiva
             this.creditos = this.creditos + cantidad; // Suma la cantidad al saldo actual
@@ -74,7 +74,7 @@ public class Jugador {
         this.partidasJugadas++; // Suma 1 al contador de partidas jugadas
     }
 
-    public String toString() { // El toString sirve para convertir el objeto en un texto para imprimirlo facil
+    public String toString() { // El toString sirve para convertir el objeto en un texto para imprimirlo de forma legible
         return "Nombre: " +this.nombre +
                 "\nCreditos: " +this.creditos +
                 "\nID: " +this.id +

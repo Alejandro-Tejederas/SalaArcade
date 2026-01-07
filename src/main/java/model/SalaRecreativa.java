@@ -10,15 +10,15 @@ public class SalaRecreativa {
         this.maquinas = new MaquinaArcade[10];
     }
 
-    //metodos de guardar
-    public boolean registrarJugador(Jugador nuevoJugador) {  // Devuelve true si lo ha guardaddo, false si no hay sitio
+    //métodos de guardar
+    public boolean registrarJugador(Jugador nuevoJugador) {  // Devuelve un true si lo ha guardado, false si no hay sitio
         for (int i = 0; i < jugadores.length; i++) {
             if (jugadores[i] == null) { // Esto lo ponemos para buscar el primer hueco vacío
                 jugadores[i] = nuevoJugador;
                 return true; // Guardado
-            }
+            } // se acaba el bucle
         }
-        return false; // si el array está lleno
+        return false; // devuelve esto si el array está lleno
     }
 
     public boolean registrarMaquina(MaquinaArcade nuevaMaquina) {

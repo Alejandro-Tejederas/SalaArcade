@@ -5,24 +5,23 @@ import java.util.Random;
 
 public class Utils {
 
-    // creamos un scanner estatico para usarlo en el programa
-    private static Scanner sc = new Scanner(System.in);
 
-    // Metodo para pedir enteros, evita fallos si se escriben letras
-    public static int leeEntero(String mensaje) {
+    private static Scanner sc = new Scanner(System.in); // creamos un scanner estatico para usarlo en el programa
+
+    public static int leeEntero(String mensaje) { // Metodo para pedir enteros, evita fallos si se escriben letras
         int numero = 0;
         boolean leido = false;
 
         while (!leido) {
             try {
-                System.out.println(mensaje);
-                numero = Integer.parseInt(sc.nextLine());
+                System.out.println(mensaje); // 1. Muestra la pregunta
+                numero = Integer.parseInt(sc.nextLine()); // 2. Intenta convertir el texto a número
                 leido = true; // Si llegamos aquí, es que era un número válido
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException e) { // 4. Si el usuario escribe letras, el programa SALTA aquí (catch)
                 System.out.println("Error: Introduce un número válido");
             }
         }
-        return numero;
+        return numero; //delvuelve un numero
     }
 
     public static boolean comprobarRango(int valor, int min, int max) { //Comprobar el rango
