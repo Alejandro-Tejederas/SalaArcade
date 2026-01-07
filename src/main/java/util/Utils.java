@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Utils {
 
-    // creamos un scanner estatico para usarlo en todo el programa
+    // creamos un scanner estatico para usarlo en el programa
     private static Scanner sc = new Scanner(System.in);
 
     // Metodo para pedir enteros, evita fallos si se escriben letras

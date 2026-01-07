@@ -2,13 +2,13 @@ package model;      //Esto indica que pertenece a la clase model
 
 public class Jugador {
 
-    // ATRIBUTOS (Variables que guardan la información del jugador)
+    //ATRIBUTOS (Variables que guardan la información del jugador)
     private String nombre;
     private int id;
     private int creditos;
     private int partidasJugadas;
 
-    //  CONSTRUCTORES
+    //CONSTRUCTORES
 
     // Constructor vacío: este permite crear un jugador sin datos iniciales
     public Jugador() {

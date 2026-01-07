@@ -6,16 +6,11 @@ import java.util.Scanner;
 
 
 public class Principal {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args){
 
-        Utils utils = new Utils();
-        utils.comprobarRango(5,8,10);
-
-        Jugador j = new Jugador();
-        MaquinaArcade m = new MaquinaArcade();
         SalaRecreativa sala = new SalaRecreativa();
-                Scanner sc = new Scanner(System.in);
-                boolean salir = false;
+        Scanner sc = new Scanner(System.in);
+        boolean salir = false;
 
                 while (!salir) {
 
@@ -31,79 +26,93 @@ public class Principal {
                     System.out.println("9. Mostrar jugador más activo");
                     System.out.println("10. Mostrar máquina más usada");
                     System.out.println("11. Mostrar ranking de una máquina");
-                    System.out.println("12. Dar de baja una máquina arcade");
-                    System.out.println("13. Editar una máquina arcade");
                     System.out.println("0. Salir");
 
-                    System.out.print("Elige una opción: ");
-                    int opcion = sc.nextInt();
-                    sc.nextLine(); // limpiar buffer
+                    int opcion = Utils.leeEntero("Elige una opción: ");
 
                     switch (opcion) {
 
-                        case 1:
-                            System.out.println("Registrar nuevo jugador");
-                            sala.registrarJugador();
+                        case 1: //registrar jugador
+                            System.out.println("Nuevo jugador");
+                            Jugador jNuevo = new Jugador(sc.nextLine(), Utils.leeEntero("ID: "), Utils.leeEntero("Créditos: "), 0);
+
+                            if (sala.registrarJugador(jNuevo)) {
+                                System.out.println("Registrado");
+                            } else {
+                                System.out.println("Error: Sala llena");
+                            }
                             break;
 
-                        case 2:
+                        case 2: //registrar maquina
                             System.out.println("Registrar nueva máquina arcade");
-                            //sala
+                            MaquinaArcade mNueva = new MaquinaArcade(sc.nextLine(), sc.nextLine(), Utils.leeEntero("Precio: "));
+                            if (sala.registrarMaquina(mNueva)) {
+                                System.out.println("Máquina creada");
+                            } else {
+                                System.out.println("Error: Sala llena");
+                            }
                             break;
 
-                        case 3:
-                            System.out.println("Recargar créditos a un jugador");
-                            j.recargarCreditos();
+                        case 3://recargar creditos
+                            Jugador jRecarga = sala.buscarJugador(Utils.leeEntero("ID Jugador: "));
+
+                            if (jRecarga != null) {
+                                jRecarga.recargarCreditos(Utils.leeEntero("Cantidad a recargar: "));
+                                System.out.println("Saldo actual: " + jRecarga.getCreditos());
+                            } else {
+                                System.out.println("Jugador no encontrado.");
+                            }
                             break;
 
                         case 4:
                             System.out.println("Listar jugadores");
-                            // listarJugadores();
+                            sala.listarJugadores();
                             break;
 
                         case 5:
                             System.out.println("Listar máquinas");
-                            // listarMaquinas();
+                            sala.listarMaquinas();
                             break;
 
-                        case 6:
+                        case 6://
                             System.out.println("Listar máquinas activas");
-                            // listarMaquinasActivas();
+                            sala.listarMaquinasActivas();
                             break;
 
                         case 7:
-                            System.out.println("Realizar mantenimiento a una máquina");
-                            // reactivarMaquina();
+                            MaquinaArcade mReparar = sala.buscarMaquina(sc.nextLine());
+                            if (mReparar != null) {
+                                mReparar.activar();
+                                System.out.println("Máquina reactivada.");
+                            } else {
+                                System.out.println("Máquina no existe.");
+                            }
                             break;
 
+
                         case 8:
-                            System.out.println("Jugar una partida");
-                            // jugarPartida();
+                            sala.gestionarPartida(Utils.leeEntero("ID Jugador: "), sc.nextLine());
                             break;
 
                         case 9:
                             System.out.println("Mostrar jugador más activo");
-                            // mostrarJugadorMasActivo();
+                            sala.mostrarJugadorMasActivo();
                             break;
 
                         case 10:
                             System.out.println("Mostrar máquina más usada");
-                            // mostrarMaquinaMasUsada();
+                            sala.mostrarMaquinaMasUsada();
                             break;
 
-                        case 11:
-                            System.out.println("Mostrar ranking de una máquina");
-                            // mostrarRankingMaquina();
-                            break;
-
-                        case 12:
-                            System.out.println("Dar de baja una máquina arcade");
-                            // darDeBajaMaquina();
-                            break;
-
-                        case 13:
-                            System.out.println("Editar una máquina arcade");
-                            // editarMaquina();
+                        case 11: //ranking
+                            MaquinaArcade mRank = sala.buscarMaquina(sc.nextLine());
+                            if (mRank != null) {
+                                for (int i = 0; i < 3; i++) {
+                                    System.out.println((i+1) + ". " + mRank.getRankingJugadores()[i] + " - " + mRank.getRankingPuntuaciones()[i]);
+                                }
+                            } else {
+                                System.out.println("Máquina no existe.");
+                            }
                             break;
 
                         case 0:
