@@ -35,7 +35,7 @@ public class MaquinaArcade {
         this.rankingJugadores = new  String[3];
     }
 
-    // GETTERS Y SETTERS (Para leer y escribir datos privados)
+    // GETTERS Y SETTERS (Para leer y escribir datos)
     public String getNombre() {
         return nombre;
     }
@@ -95,7 +95,6 @@ public class MaquinaArcade {
 
 
         public int jugarPartida(String nombreJugador){
-            // Primero calculamos los puntos que ha sacado el jugador (usando la clase Utils)
             int puntuacion = Utils.generarNumeroAleatorio(0, 9999); // Genera un número entre 0 y 9999
 
             this.contadorPartidas++; //Incrementar contador de partidas
@@ -125,7 +124,7 @@ public class MaquinaArcade {
         }
     }
 
-    // el to string sirve para imprimir la máquina por consola)
+    // el to string sirve para imprimir la máquina por consola (ver la informacion)
     @Override
     public String toString() {
         return "MaquinaArcade{" +

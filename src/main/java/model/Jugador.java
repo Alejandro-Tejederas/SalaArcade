@@ -15,7 +15,7 @@ public class Jugador {
 
     }
 
-    public  Jugador(String nombre, int id, int creditos, int partidasJugadas) { // Constructor con parámetros: permite crear un jugador y darle valores de golpe
+    public  Jugador(String nombre, int id, int creditos, int partidasJugadas) { // Constructor con parámetros: permite crear un jugador y darle valores
         this.nombre = nombre; // Asigna el nombre recibido al atributo del objeto
         this.id = id; // Asigna el id
         this.creditos = creditos; // Asigna los créditos iniciales
